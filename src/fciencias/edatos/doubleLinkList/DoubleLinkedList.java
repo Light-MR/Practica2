@@ -226,7 +226,7 @@ public class DoubleLinkedList<T> implements TDAList<T> {
                 System.out.println("------ + IT"+ iterador2.getElement());
                 eliminado = iterador2; 
                 System.out.println("PREV "+ iterador2.getPrev().getElement() + "NEXT  "+ iterador2.getNext().getElement() );
-                iterador2.setNext(iterador2.getNext());
+                iterador2.getPrev().setNext(iterador2.getNext());
                 iterador2.getNext().setPrev(iterador2.getPrev());
                 System.out.println("------");
                 size--;
