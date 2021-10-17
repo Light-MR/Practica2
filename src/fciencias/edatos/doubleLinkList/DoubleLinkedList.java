@@ -141,6 +141,10 @@ public class DoubleLinkedList<T> implements TDAList<T> {
     }
     @Override
     public boolean contains(T e){
+        //Si la lista es vacía
+        if(isEmpty())
+            return false;
+        
         Node iterador1 = head;
         Node iterador2 = tail;
         int limit = (size()/2)+1;
@@ -164,6 +168,11 @@ public class DoubleLinkedList<T> implements TDAList<T> {
     }
     @Override
     public T get(int i) throws IndexOutOfBoundsException{
+        //Si la lista es vacia
+        if(isEmpty()){
+            System.out.println("\n\tLa lista está vacía");
+            return null;
+        }
         Node iterador1 = head;
         Node iterador2 = tail;
         int limit = (size()/2)+1;
@@ -192,6 +201,11 @@ public class DoubleLinkedList<T> implements TDAList<T> {
     public T remove(int i) throws IndexOutOfBoundsException{
         if(i>size()-1 || i<0){
             throw new IndexOutOfBoundsException();
+        }
+        //List vacia
+        if(isEmpty()){
+            System.out.println("\n\tLa lista está vacía");
+            return  null;
         }
         //Si i es 0 
         Node eliminado = null;
