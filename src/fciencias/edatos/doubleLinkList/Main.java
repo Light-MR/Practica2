@@ -17,10 +17,12 @@ public static void main(String[] args) {
     list.add(4, "(W_x)");
     System.out.print(list);
     String v ="(x_x)";
-    System.out.println(list.contains(v));
-    System.out.println("Get:"+ list.get(2));
+    //System.out.println(list.contains(v));
+    //System.out.println("Get:"+ list.get(2));
     
-    System.out.println("Elimina 0:"+ list.remove(3)+ "\n"+ list);
+    //System.out.println("Elimina 0:"+ list.remove(3)+ "\n"+ list);
+    //System.out.println(list.revert());
+    list.revert();
     
 
 }

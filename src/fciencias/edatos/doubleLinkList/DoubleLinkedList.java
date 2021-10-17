@@ -126,9 +126,9 @@ public class DoubleLinkedList<T> implements TDAList<T> {
             }
             iterador2 = iterador2.getPrev();    
             
-            if(n==m){
+            if(n==m)
                 return;
-            }
+        
             
         }
 
@@ -149,17 +149,14 @@ public class DoubleLinkedList<T> implements TDAList<T> {
         Node iterador2 = tail;
         int limit = (size()/2)+1;
         for(int n =0, m = size()-1; n<limit; n++,m--){
-            //System.out.println("n = " + n + "m = "+ m);
-            if(e.equals(iterador1.getElement())){
-                //System.out.println("E1: "+ iterador1.getElement());
+            if(e.equals(iterador1.getElement()))
                 return true;
-            }
+            
             iterador1 = iterador1.getNext();
             //Solo recorre la  mitad
-            if(e.equals(iterador2.getElement())){
-                //System.out.println("E2: "+ iterador2.getElement());
+            if(e.equals(iterador2.getElement()))
                 return true;
-            }
+            
             iterador2 = iterador2.getPrev();
              //   A B C D 5
         }
@@ -259,6 +256,22 @@ public class DoubleLinkedList<T> implements TDAList<T> {
     }
     @Override 
     public void revert(){
+        if(isEmpty())
+            System.out.println("\n\tLista sin elementos.");
+        
+        Node aux = null;
+        Node iterador = head;
+        while (iterador != null) {
+            aux = iterador.getPrev();
+            iterador.setPrev(iterador.getNext());
+            iterador.setNext(aux);
+            iterador = iterador.getPrev();
+        }
+        if(aux!= null)
+            head = aux.getPrev();
+        
+
+        System.out.println(toString());
 
     }
     @Override
