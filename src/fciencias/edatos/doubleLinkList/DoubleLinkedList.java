@@ -2,6 +2,8 @@ package fciencias.edatos.doubleLinkList;
 import java.util.Iterator;
 
 
+
+
 /**
  * Practica 2: Doubly Linked List.
  * @author Reyes Ramos Luz María 318211073
@@ -106,6 +108,7 @@ public class DoubleLinkedList<T> implements TDAList<T> {
             if(n == i-1){
                 newNode.setNext(iterador1.getNext());
                 newNode.setPrev(iterador1);
+                iterador1.getNext().setPrev(newNode);
                 iterador1.setNext(newNode);
                 size++;
                 return;
@@ -116,6 +119,7 @@ public class DoubleLinkedList<T> implements TDAList<T> {
             if(m ==i-1){
                 newNode.setNext(iterador2.getNext());
                 newNode.setPrev(iterador2);
+                iterador2.getNext().setPrev(newNode);
                 iterador2.setNext(newNode);
                 size++;
                 return;
@@ -139,18 +143,21 @@ public class DoubleLinkedList<T> implements TDAList<T> {
     public boolean contains(T e){
         Node iterador1 = head;
         Node iterador2 = tail;
-        int limit = size()/2;
+        int limit = (size()/2)+1;
         for(int n =0, m = size()-1; n<limit; n++,m--){
+            //System.out.println("n = " + n + "m = "+ m);
             if(e.equals(iterador1.getElement())){
+                //System.out.println("E1: "+ iterador1.getElement());
                 return true;
             }
             iterador1 = iterador1.getNext();
             //Solo recorre la  mitad
             if(e.equals(iterador2.getElement())){
+                //System.out.println("E2: "+ iterador2.getElement());
                 return true;
             }
             iterador2 = iterador2.getPrev();
-             //   A B C D
+             //   A B C D 5
         }
 
         return false;
@@ -159,7 +166,7 @@ public class DoubleLinkedList<T> implements TDAList<T> {
     public T get(int i) throws IndexOutOfBoundsException{
         Node iterador1 = head;
         Node iterador2 = tail;
-        int limit = size()/2;
+        int limit = (size()/2)+1;
         if(i>size()-1 || i<0){
             throw new IndexOutOfBoundsException();
 
@@ -206,13 +213,9 @@ public class DoubleLinkedList<T> implements TDAList<T> {
         int limit = size()/2;
         Node iterador1 = head;
         Node iterador2 = tail;
-        System.out.println("TAIL: "+ tail.getElement());
-        System.out.println("TAILPREV: "+ tail.getPrev().getElement());
-        System.out.println("TAILPREVPREV: "+ tail.getPrev().getPrev().getElement());
-        for(int n =0, m = size()-1; n<limit; n++, m--){
+        for(int n =0, m = size()-1; n<size(); n++, m--){
             if(n == i ){
                 eliminado = iterador1;
-                //System.out.println("PREV "+ iterador1.getElement() );
                 iterador1.getPrev().setNext(iterador1.getNext());
                 iterador1.getNext().setPrev(iterador1.getPrev());
                 System.out.println("------");
@@ -222,10 +225,7 @@ public class DoubleLinkedList<T> implements TDAList<T> {
             iterador1 = iterador1.getNext();
 
             if(m == i){
-
-                System.out.println("------ + IT"+ iterador2.getElement());
                 eliminado = iterador2; 
-                System.out.println("PREV "+ iterador2.getPrev().getElement() + "NEXT  "+ iterador2.getNext().getElement() );
                 iterador2.getPrev().setNext(iterador2.getNext());
                 iterador2.getNext().setPrev(iterador2.getPrev());
                 System.out.println("------");
@@ -234,7 +234,6 @@ public class DoubleLinkedList<T> implements TDAList<T> {
 
             }
             iterador2 = iterador2.getPrev();
-            System.out.println("IT2: "+ iterador2.getElement());
             
             
         }
