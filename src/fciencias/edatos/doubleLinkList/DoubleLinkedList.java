@@ -210,7 +210,7 @@ public class DoubleLinkedList<T> implements TDAList<T> {
             return eliminado.getElement();
         }
         //Algun otro indice
-        int limit = size()/2;
+        int limit = (size()/2)+1;
         Node iterador1 = head;
         Node iterador2 = tail;
         for(int n =0, m = size()-1; n<size(); n++, m--){
